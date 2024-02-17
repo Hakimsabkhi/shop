@@ -1,9 +1,21 @@
-import React from 'react'
+import { Container } from "react-bootstrap";
+import Header from "./componnent/Header";
+import Footer from "./componnent/Footer";
+
 
 const App = () => {
   return (
-    <h1>welcome</h1>
-  )
-}
+    <>
+      <Header/>
+        <main>
+          <Container>
+            <h1>welcome</h1>
+          </Container>
+        </main>
+        <Footer />
+      
+    </>
+  );
+};
 
-export default App
+export default App;
