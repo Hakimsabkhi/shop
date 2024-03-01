@@ -99,7 +99,7 @@ navigate('/login?redirect=/shipping');
               <Button
                 type="button"
                 className="btn-block"
-                disable={cartItems.length === 0}
+                disabled={cartItems.length === 0} // Corrected attribute name and condition
                 onClick={checkoutHandler}
               >
                 Proceed to Checkout

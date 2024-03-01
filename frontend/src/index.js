@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+/* import "bootstrap/dist/css/bootstrap.min.css"; */
+import './assets/styles/bootstrap.custom.css'
+import './assets/styles/index.css'
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import {
@@ -35,7 +36,7 @@ const router = createBrowserRouter(
         <Route path="/shipping" element={<ShippingScreen />} />
         <Route path="/payment" element={<PaymentScreen />} />
         <Route path="/placeorder" element={<PlaceOrderScreen />} />
-        <Route path="/order" element={<OrderScreen />} />
+        <Route path="/order/:id" element={<OrderScreen />} />
       </Route>
     </Route>
   )
