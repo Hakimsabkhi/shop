@@ -37,7 +37,7 @@ const ShippingScreen = () => {
             value={address}
             onChange={(e) => setAddress(e.target.value)}
           />
-        </Form.Group>NchromewinrarD:
+        </Form.Group>
         <Form.Group controlId="city" className="my-3">
           <Form.Label>City</Form.Label>
           <Form.Control

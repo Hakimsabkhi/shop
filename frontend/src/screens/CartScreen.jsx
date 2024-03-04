@@ -11,7 +11,7 @@ import {
   Card,
 } from "react-bootstrap";
 
-import Message from "../components/Massage";
+import Message from "../components/Message";
 import { addToCart , removeFromCart } from "../slices/cartSlice";
 
 const CartScreen = () => {
