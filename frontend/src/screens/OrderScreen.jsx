@@ -21,7 +21,7 @@ const OrderScreen = () => {
     error,
   } = useGetOrderDetailsQuery(orderId);
 
-  const [payOrder, { isLoading: loadingPay}] = usePayOrderMutation();
+  const [payOrder, { isLoading: loadingPay }] = usePayOrderMutation();
 
   const { userInfo } = useSelector((state) => state.auth);
 
@@ -33,18 +33,17 @@ const OrderScreen = () => {
     error: errorPayPal,
   } = useGetPaypalClientIdQuery();
 
-
   useEffect(() => {
     if (!errorPayPal && !loadingPayPal && paypal.clientId) {
       const loadPaypalScript = async () => {
         paypalDispatch({
-          type: 'resetOptions',
+          type: "resetOptions",
           value: {
-            'client-id': paypal.clientId,
-            currency: 'USD',
+            "client-id": paypal.clientId,
+            currency: "USD",
           },
         });
-        paypalDispatch({ type: 'setLoadingStatus', value: 'pending' });
+        paypalDispatch({ type: "setLoadingStatus", value: "pending" });
       };
       if (order && !order.isPaid) {
         if (!window.paypal) {
@@ -53,7 +52,6 @@ const OrderScreen = () => {
       }
     }
   }, [errorPayPal, loadingPayPal, order, paypal, paypalDispatch]);
-
 
   function onApprove() {}
   function onApproveTest() {}
@@ -156,24 +154,24 @@ const OrderScreen = () => {
                   <Col>Total</Col>
                   <Col>${order.totalPrice}</Col>
                 </Row>
-              </ListGroup.Item>            
-                <ListGroup.Item>                            
-                    <div>
-                      <Button
-                        onClick={onApproveTest}
-                        style={{ marginBottom: "10px" }}
-                      >
-                        Test Pay order
-                      </Button>
-                      <div>
-                        <PayPalButtons
-                          createOrder={createOrder}
-                          onApprove={onApprove}
-                          onError={onError}
-                        ></PayPalButtons>
-                      </div>
-                    </div>            
-                </ListGroup.Item>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <div>
+                  <Button
+                    onClick={onApproveTest}
+                    style={{ marginBottom: "10px" }}
+                  >
+                    Test Pay order
+                  </Button>
+                  <div>
+                    <PayPalButtons
+                      createOrder={createOrder}
+                      onApprove={onApprove}
+                      onError={onError}
+                    ></PayPalButtons>
+                  </div>
+                </div>
+              </ListGroup.Item>
             </ListGroup>
           </Card>
         </Col>
