@@ -29,19 +29,26 @@ app.get("/api/config/paypal", (req, res) =>
   res.send({ clientId: process.env.PAYPAL_CLIENT_ID })
 );
 
-if (process.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV === 'production') {
   const __dirname = path.resolve();
-  app.use("/uploads", express.static("/var/data/uploads"));
-  app.use(express.static(path.join(__dirname, "/frontend/build")));
 
-  app.get("*", (req, res) =>
-    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"))
+  app.use('/uploads', express.static('/var/data/uploads'));
+  
+  // Serve static files from the "public" directory in production
+  app.use(express.static(path.join(__dirname, 'frontend', 'build')));
+
+  // Serve the main HTML file for client-side routing
+  app.get('*', (req, res) =>
+    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
   );
 } else {
   const __dirname = path.resolve();
-  app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
-  app.get("/", (req, res) => {
-    res.send("API is running....");
+
+  // Use a different directory for uploads in development
+  app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+  app.get('/', (req, res) => {
+    res.send('API is running....');
   });
 }
 
